@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# get the latest package list
+sudo apt-get update
+sudo apt-get upgrade -y
+
+# graphviz -> show query execution graph
+sudo apt-get install -y graphviz
+
+# gfortran -> used in scikit-misc
+sudo apt-get install -y gfortran
+
+# installs tool to install rust + cargo
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+# install rust + cargo
+rustup update
+
+# uv -> python virtual environment manager
+curl -LsSf https://astral.sh/uv/install.sh | sh

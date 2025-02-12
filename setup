@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ ! -f /usr/local/bin/uv ]; then
+    echo "==> Installing uv"
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+fi
+
+echo "==> Creating venv"
+uv venv .reprex
+
+echo "==> Activating venv"
+source .reprex/bin/activate
+
+echo "==> Installing packages"
+uv pip install ipykernel jupyterlab
+uv sync --active
+
+echo "==> Creating jupyter kernel"
+python -m ipykernel install --user --name=.reprex --display-name="Python 3.12 (.reprex)"
